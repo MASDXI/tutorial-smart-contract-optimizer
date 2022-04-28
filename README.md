@@ -1,6 +1,16 @@
-# hardhat-template
+# Tutorial Smart Contract Optimizer
 
-Hardhat-Template is a template of hardhat structure. Used for quick creation Solidity project.
+## disclaimer
+
+this is used only for research only not for the production
+and so sorry if my code suck.
+
+`1_MyToken20.sol` is compile without eanble optimizer
+`2_MyToken20.sol` is compile enable optimizer `200` runs (default)
+`3_MyToken20.sol` is compile eanble optimizer `50000` runs
+`4_MyToken20.sol` is compile eanble optimizer `1000000` runs
+`5_MyToken20.sol` is compile eanble optimizer `788` runs (coursed tune)
+`6_MyToken20.sol` is compile eanble optimizer `684` runs (fine tune)
 
 Set up project:
 
@@ -13,32 +23,7 @@ Commands:
 ```bash
 yarn clean              #Clear cache.
 yarn compile            #Compile smart-contract.
-
-yarn coverage           #Coverage test.
-
-yarn test               #Summary test.
-yarn test:unit          #Unit test.
-yarn test:integrate     #Integrate test.
-
+yarn contract-size      #Show smart-contract sizing
+yarn test               #Summary test and benchmark.
 yarn rpc                #Run hardhat node.
-
-yarn deploy:localhost   #Run task deploy to localhost network.
-yarn deploy:ganache     #Run task deploy to ganache network.
-yarn deploy:ropsten     #Run task deploy to ropsten network.
-yarn deploy:rinkeby     #Run task deploy to rinkeby network.
-yarn deploy:mainnet     #Run task deploy to mainnet network.
-
-yarn verify:ropsten     #Run task verify for ropsten network.
-yarn verify:rinkeby     #Run task verify for rinkeby network.
-yarn verify:mainnet     #Run task verify for mainnet network.
-```
-
-Verify smart-contract:
-
-```bash
-#should run `yarn clean` before run verify command.
-
-yarn verify:ropsten ${YOUR_CONTRACT_ADDRESS}
-yarn verify:rinkeby ${YOUR_CONTRACT_ADDRESS}
-yarn verify:mainnet ${YOUR_CONTRACT_ADDRESS}
 ```

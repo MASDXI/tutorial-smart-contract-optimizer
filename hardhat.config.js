@@ -5,9 +5,7 @@ require("@nomiclabs/hardhat-ethers");
 require("hardhat-change-network");
 require("hardhat-gas-reporter");
 require("solidity-coverage");
-
-require("./task/verify.js");
-
+require("hardhat-contract-sizer");
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 
@@ -19,6 +17,20 @@ module.exports = {
     compilers: [
       {
         version: "0.8.0",
+      },
+    ],
+    overrides: {
+      "contracts/1_MyToken20.sol": {
+        version: "0.8.0",
+        settings: {
+          optimizer: {
+            enabled: false,
+            runs: 0,
+          },
+        },
+      },
+      "contracts/2_MyToken20.sol": {
+        version: "0.8.0",
         settings: {
           optimizer: {
             enabled: true,
@@ -26,7 +38,43 @@ module.exports = {
           },
         },
       },
-    ],
+      "contracts/3_MyToken20.sol": {
+        version: "0.8.0",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 50000,
+          },
+        },
+      },
+      "contracts/4_MyToken20.sol": {
+        version: "0.8.0",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 1000000,
+          },
+        },
+      },
+      "contracts/5_MyToken20.sol": {
+        version: "0.8.0",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 788, // coarse-tune
+          },
+        },
+      },
+      "contracts/6_MyToken20.sol": {
+        version: "0.8.0",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 684, // fine-tune
+          },
+        },
+      },
+    },
   },
   networks: {
     hardhat: {
@@ -54,7 +102,7 @@ module.exports = {
     },
   },
   gasReporter: {
-    // enabled: process.env.REPORT_GAS,
+    enabled: true,
     currency: "usd",
     gasPrice: 70,
     // coinmarketcap: process.env.COINMARKET_API_KEY,
@@ -68,5 +116,8 @@ module.exports = {
   mocha: {
     timeout: 200000,
     slow: "0",
+  },
+  contractSizer: {
+    except: ["ERC20"],
   },
 };

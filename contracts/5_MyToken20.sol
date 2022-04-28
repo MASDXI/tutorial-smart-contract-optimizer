@@ -8,10 +8,10 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 /// @title My Token 20 (MT20)
 /// @dev MT20 is a simulated token, based development from ERC20.
 
-contract MyToken20 is ERC20, Pausable, Ownable {
+contract MyToken20_5 is ERC20, Pausable, Ownable {
     /// @dev Initializes contract.
     constructor() ERC20("My Token 20", "MT20") {
-        _mint(msg.sender, 10000000 * 10 ** decimals());
+        _mint(msg.sender, 10000000 * 10**decimals());
     }
 
     /// @dev Using for pause state.
@@ -39,11 +39,11 @@ contract MyToken20 is ERC20, Pausable, Ownable {
     }
 
     /// @dev Overriding `_beforeTokenTransfer` by adding modifier `whenNotPaused`.
-    function _beforeTokenTransfer(address _from, address _to, uint256 _amount)
-        internal
-        whenNotPaused
-        override
-    {
+    function _beforeTokenTransfer(
+        address _from,
+        address _to,
+        uint256 _amount
+    ) internal override whenNotPaused {
         super._beforeTokenTransfer(_from, _to, _amount);
     }
 }
